@@ -10,10 +10,8 @@ import pytest
 # то между тестами нет смысла закрывать драйвер
 #################################################################
 
-def test_tenzor_block_4_is_displayed(browser):
+def test_contacts_region_correct(browser):
     """
     Проверка отображения блока "Сила в людях" на странице контактов
     """
-    tenzor_page = ContactsPage.tenzor_block_4_open(browser)
-    assert tenzor_page.tensor_block_4.is_displayed()
-    assert tenzor_page.tensor_block_4_text.text == 'Сила в людях'
+    contacts_page =

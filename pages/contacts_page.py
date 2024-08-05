@@ -27,18 +27,26 @@ class ContactsPage(BasePage):
         self.browser.switch_to.window(self.browser.window_handles[1]) # переходим на открывшуюся вкладку
         return self.browser
 
-    # @staticmethod
-    def tenzor_block_4_open(browser):
+    def contacts_click(self):
         """
-        На главной странице переходит в раздел контакты, затем кликает по логотипу tenzor
-        :param browser:
-        :return: current_page возвращает объект страницы TenzorPage
+        Переходит в раздел контакты
         """
-        current_page = BasePage(browser)
+        current_page = BasePage(self.browser)
         current_page.open_home_page()
         current_page = ContactsPage(current_page.browser)
         current_page.button_contacts.click()
-        current_page = TenzorPage(current_page.logo_tenzor_click)
+        return current_page
+
+
+
+    def tenzor_block_4_open(self):
+        """
+        В разделе контакты кликает по логотипу tenzor
+        :param browser:
+        :return: current_page возвращает объект страницы TenzorPage
+        """
+        contacts_page = self.contacts_click()
+        current_page = TenzorPage(contacts_page.logo_tenzor_click)
         return current_page
 
 

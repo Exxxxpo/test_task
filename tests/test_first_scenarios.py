@@ -14,7 +14,8 @@ def test_tenzor_block_4_is_displayed(browser):
     """
     Проверка отображения блока "Сила в людях" на странице контактов
     """
-    tenzor_page = ContactsPage.tenzor_block_4_open(browser)
+    contacts_page = ContactsPage(browser)
+    tenzor_page = contacts_page.tenzor_block_4_open()
     assert tenzor_page.tensor_block_4.is_displayed()
     assert tenzor_page.tensor_block_4_text.text == 'Сила в людях'
 
