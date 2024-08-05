@@ -1,10 +1,8 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.tenzor_page import TenzorPage
-import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 
 
 button_selector = (By.LINK_TEXT, 'Контакты')
@@ -13,7 +11,7 @@ tensor_block_4_selector = (By.CSS_SELECTOR, "div.tensor_ru-Index__block4-content
 tensor_block_4_selector_text = (By.XPATH, ".//p[contains(text(), 'Сила в людях')]")
 contacts_top_block_selector = (By.CSS_SELECTOR, ".sbis_ru-container.sbisru-Contacts__relative")
 contacts_top_block_link_region_selector = (By.CSS_SELECTOR, ".sbis_ru-Region-Chooser__text.sbis_ru-link")
-contacts_list_partners_selector = (By.CSS_SELECTOR, ".sbisru-Contacts-List__city.sbisru-text--standart.sbisru-Contacts__text--500.sbisru-Contacts__text--md-xm.pl-24.pl-xm-0.pt-16.pt-xm-12.pb-4.pb-xm-8.ws-flexbox.ws-justify-content-between.ws-align-items-start")
+contacts_city_partners_selector = (By.CSS_SELECTOR, ".sbisru-Contacts-List__city.sbisru-text--standart.sbisru-Contacts__text--500.sbisru-Contacts__text--md-xm.pl-24.pl-xm-0.pt-16.pt-xm-12.pb-4.pb-xm-8.ws-flexbox.ws-justify-content-between.ws-align-items-start")
 region_panel_list_selector = (By.CSS_SELECTOR, ".sbis_ru-Region-Panel__list-l")
 change_region_selector = (By.CSS_SELECTOR, "span[title='Камчатский край']")
 contacts_top_block_link_region_click_wait = (By.CSS_SELECTOR, ".controls-Field.js-controls-Field.controls-InputBase__nativeField.controls-Search__nativeField_caretEmpty.controls-Search__nativeField_caretEmpty_theme_sbisru.controls-InputBase__nativeField_hideCustomPlaceholder")
@@ -54,9 +52,9 @@ class ContactsPage(BasePage):
     @property
     def contacts_list_partners(self):
         """
-        Блок партнеров в разделе Контакты.
+        Город парнеров в разделе контакты
         """
-        return self.find_element(contacts_list_partners_selector)
+        return self.find_element(contacts_city_partners_selector)
 
     def contacts_top_block_link_region_click(self):
         """
@@ -69,66 +67,29 @@ class ContactsPage(BasePage):
         """
         Блок регионов в панели смены региона.
         """
-        elems = self.find_element(region_panel_list_selector)
-        return elems
+        return self.find_element(region_panel_list_selector)
 
     def change_region(self):
         """
         Меняет регион на Камчатский край
         """
         self.find_element_in_block(self.region_panel_list, *change_region_selector).click()
-        self.contacts_top_block_link_region
+
 
     def region_panel_list_wait(self):
         """
-        Отлавливает "Загрузку" при клике на смену региона
+        Ждет пока появится поле ввода при смене региона
         """
         self.find_element(contacts_top_block_link_region_click_wait)
 
-
-    # def region_panel_list_wait(self):
-    #     """
-    #     Отлавливает "Загрузку" при клике на смену региона
-    #     """
-    #     # self.find_element(contacts_top_block_link_region_click_wait)
-    #     wait = WebDriverWait(self.browser, 30)  # Увеличим время ожидания
-    #     loading_indicators = [
-    #         (By.CLASS_NAME, 'controls-loading-indicator_content'),
-    #     ]
-    #
-    #     for indicator in loading_indicators:
-    #         try:
-    #             # Wait for the loading indicator to be present
-    #             wait.until(EC.presence_of_element_located(indicator))
-    #
-    #             # Wait for the loading indicator to be invisible using different methods
-    #             wait.until(EC.invisibility_of_element_located(indicator))
-    #
-    #             # Additional checks for visibility using JavaScript and CSS properties
-    #             wait.until(lambda browser: not self.is_element_visible(browser, indicator))
-    #         except TimeoutException:
-    #             print(f'таймаут {indicator}')
-    #             pass
-    #
-    # def is_element_visible(self, driver, locator):
-    #     """
-    #     Проверяет, виден ли элемент с помощью различных методов.
-    #     """
-    #     element = driver.find_element(*locator)
-    #     if element.is_displayed():
-    #         return False
-    #
-    #     style = element.get_attribute('style')
-    #     if 'display: none;' in style or 'visibility: hidden;' in style:
-    #         return False
-    #
-    #     # Проверка размера элемента
-    #     size = element.size
-    #     if size['width'] == 0 and size['height'] == 0:
-    #         return False
-    #
-    #     # Использование JavaScript для проверки видимости
-    #     return driver.execute_script("return arguments[0].offsetParent === null;", element)
+    def after_change_region_wait(self):
+        """
+        Ждет пока загрузится список партнеров после смены региона
+        """
+        wait = WebDriverWait(self.browser, 10)
+        return wait.until(
+            EC.text_to_be_present_in_element(contacts_city_partners_selector, "Петропавловск-Камчатский")
+        )
 
 
     def contacts_click(self):

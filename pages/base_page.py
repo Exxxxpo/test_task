@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 class BasePage:
     def __init__(self, browser):
@@ -9,6 +11,8 @@ class BasePage:
         self.browser.get("https://sbis.ru/")
 
     def find_element(self, args):
+        # wait = WebDriverWait(self.browser, 10)
+        # return wait.until(EC.visibility_of_element_located(args))
         return self.browser.find_element(*args)
 
     def find_elements(self, args):
