@@ -25,7 +25,7 @@ def test_tensor_block_4_link_about_redirect(browser):
     assert 'https://tensor.ru/about' == about_page.browser.current_url
 
 
-def test_tensor_about_size_images(browser):
+def test_tensor_about_size_images(browser): #1
     tenzor_page = ContactsPage.tenzor_block_4_open(browser)  # открываем страницу контактов, кликаем по логотипу
     about_page = TenzorPage.tensor_block_4_about_link_click(tenzor_page.browser)  # переходим по ссылке "Подробнее"
     about_page = AboutPage(about_page.browser)
