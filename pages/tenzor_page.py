@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 tensor_block_4_selector = (By.CSS_SELECTOR, "div.tensor_ru-Index__block4-content.tensor_ru-Index__card")
-tensor_block_4_selector_text = (By.XPATH, ".//p[contains(text(), 'Сила в людях')]")
+tensor_block_4_selector_text = (By.CSS_SELECTOR, ".tensor_ru-Index__card-title.tensor_ru-pb-16")
 tensor_block_4_about_link_click_selector = (By.LINK_TEXT, "Подробнее")
 
 class TenzorPage(BasePage):

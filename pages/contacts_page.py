@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 button_selector = (By.LINK_TEXT, 'Контакты')
-logo_tensor_selector = (By.XPATH, "//a[@href='https://tensor.ru/' and @class='sbisru-Contacts__logo-tensor mb-12']")
-tensor_block_4_selector = (By.CSS_SELECTOR, "div.tensor_ru-Index__block4-content.tensor_ru-Index__card")
-tensor_block_4_selector_text = (By.XPATH, ".//p[contains(text(), 'Сила в людях')]")
+logo_tensor_selector = (By.CSS_SELECTOR, ".sbisru-Contacts__logo-tensor.mb-12")
+tensor_block_4_selector = (By.CSS_SELECTOR, ".s-Grid-col.s-Grid-col--6.s-Grid-col--sm12")
+tensor_block_4_selector_text = (By.CSS_SELECTOR, ".tensor_ru-Index__card-title.tensor_ru-pb-16")
 contacts_top_block_selector = (By.CSS_SELECTOR, ".sbis_ru-container.sbisru-Contacts__relative")
 contacts_top_block_link_region_selector = (By.CSS_SELECTOR, ".sbis_ru-Region-Chooser__text.sbis_ru-link")
 contacts_city_partners_selector = (By.CSS_SELECTOR, ".sbisru-Contacts-List__city.sbisru-text--standart.sbisru-Contacts__text--500.sbisru-Contacts__text--md-xm.pl-24.pl-xm-0.pt-16.pt-xm-12.pb-4.pb-xm-8.ws-flexbox.ws-justify-content-between.ws-align-items-start")
