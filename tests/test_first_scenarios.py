@@ -5,30 +5,34 @@ from pages.tenzor_page import TenzorPage
 from pages.about_page import AboutPage
 import pytest
 
-
+#################################################################
+# Поскольку алогоритмы проверки 1-ого сценария последовательные,
+# то между тестами нет смысла закрывать драйвер
+#################################################################
 
 def test_tenzor_block_4_is_displayed(browser):
     """
     Проверка отображения блока "Сила в людях" на странице контактов
     """
-    current_page = ContactsPage.tenzor_block_4_open(browser)
-    assert current_page.tensor_block_4.is_displayed()
-    assert current_page.tensor_block_4_text.text == 'Сила в людях'
+    tenzor_page = ContactsPage.tenzor_block_4_open(browser)
+    assert tenzor_page.tensor_block_4.is_displayed()
+    assert tenzor_page.tensor_block_4_text.text == 'Сила в людях'
 
 
 def test_tensor_block_4_link_about_redirect(browser):
     """
     Проверка перехода по ссылке "Подробнее"
     """
-    tenzor_page = ContactsPage.tenzor_block_4_open(browser) # открываем страницу контактов, кликаем по логотипу
+    tenzor_page = TenzorPage(browser)
     about_page = TenzorPage.tensor_block_4_about_link_click(tenzor_page.browser) # переходим по ссылке "Подробнее"
     assert 'https://tensor.ru/about' == about_page.browser.current_url
 
 
 def test_tensor_about_size_images(browser):
-    tenzor_page = ContactsPage.tenzor_block_4_open(browser)  # открываем страницу контактов, кликаем по логотипу
-    about_page = TenzorPage.tensor_block_4_about_link_click(tenzor_page.browser)  # переходим по ссылке "Подробнее"
-    about_page = AboutPage(about_page.browser)
+    """
+    Проверка размеров изображений в разделе "Работаем"
+    """
+    about_page = AboutPage(browser)
     images = about_page.images_block() # список изображений в разделе "Работаем"
     first_image = images[0]
     for image in images[1:]:

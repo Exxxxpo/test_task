@@ -15,11 +15,11 @@ class ContactsPage(BasePage):
 
     @property
     def button_contacts(self):
-        return self.find(button_selector)
+        return self.find_element(button_selector)
 
     @property
     def logo_tenzor(self):
-        return self.find(logo_tensor_selector)
+        return self.find_element(logo_tensor_selector)
 
     @property
     def logo_tenzor_click(self):
