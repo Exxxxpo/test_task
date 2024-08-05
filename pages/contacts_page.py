@@ -50,7 +50,7 @@ class ContactsPage(BasePage):
         return self.find_element_in_block(self.contacts_top_block, *contacts_top_block_link_region_selector)
 
     @property
-    def contacts_list_partners(self):
+    def city_of_partners(self):
         """
         Город парнеров в разделе контакты
         """
@@ -73,6 +73,7 @@ class ContactsPage(BasePage):
         """
         Меняет регион на Камчатский край
         """
+        self.region_panel_list_wait()
         self.find_element_in_block(self.region_panel_list, *change_region_selector).click()
 
 
