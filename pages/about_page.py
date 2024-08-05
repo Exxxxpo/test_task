@@ -12,9 +12,9 @@ class AboutPage(BasePage):
 
     @property
     def work_block(self):
-        result_block = self.find(work_block_selector)
+        result_block = self.find_element(work_block_selector)
         self.browser.execute_script("arguments[0].scrollIntoView();", result_block)
         return result_block
 
     def images_block(self):
-        return self.work_block.find_elements(*images_block_selector)
+        return self.find_elements_in_block(self.work_block, *images_block_selector)
