@@ -1,4 +1,3 @@
-import settings
 from pages.contacts_page import ContactsPage
 
 
@@ -38,6 +37,7 @@ def test_partners_after_change_region(browser):
     assert contacts_page.find_city_of_partners.is_displayed()
     assert contacts_page.find_city_of_partners.text == "Петропавловск-Камчатский"
 
+
 def test_url_after_change_region(browser):
     """
     URL корректно сменился после смены региона.
@@ -48,7 +48,7 @@ def test_url_after_change_region(browser):
 
 def test_title_after_change_region(browser):
     """
-    Title корректно сменился после смены региона
+    Title корректно сменился после смены региона.
     """
     contacts_page = ContactsPage(browser)
     assert contacts_page.browser.title == 'СБИС Контакты — Камчатский край'

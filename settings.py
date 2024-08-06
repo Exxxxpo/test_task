@@ -1,6 +1,3 @@
-import sys
-import os
+from pathlib import Path
 
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-if PROJECT_PATH not in sys.path:
-    sys.path.append(PROJECT_PATH)
+BASE_DIR = Path(__file__).resolve().parent
