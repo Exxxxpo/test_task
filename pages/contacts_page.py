@@ -22,48 +22,48 @@ class ContactsPage(BasePage):
         super().__init__(browser)
 
     @property
-    def button_contacts(self):
+    def find_button_contacts(self):
         return self.find_element(button_selector)
 
     @property
-    def logo_tenzor(self):
+    def find_logo_tenzor(self):
         return self.find_element(logo_tensor_selector)
 
     @property
-    def logo_tenzor_click(self):
-        self.logo_tenzor.click()
+    def click_logo_tenzor(self):
+        self.find_logo_tenzor.click()
         self.browser.switch_to.window(self.browser.window_handles[1]) # переходим на открывшуюся вкладку
         return self.browser
 
     @property
-    def contacts_top_block(self):
+    def find_contacts_top_block(self):
         """
         Верхний блок в разделе контакты, содержащий смену региона
         """
         return self.find_element(contacts_top_block_selector)
 
     @property
-    def contacts_top_block_link_region(self):
+    def find_link_change_region_in_contacts_block(self):
         """
         Ссылка на смену региона в разделе Контакты.
         """
-        return self.find_element_in_block(self.contacts_top_block, *contacts_top_block_link_region_selector)
+        return self.find_element_in_block(self.find_contacts_top_block, *contacts_top_block_link_region_selector)
 
     @property
-    def city_of_partners(self):
+    def find_city_of_partners(self):
         """
         Город парнеров в разделе контакты
         """
         return self.find_element(contacts_city_partners_selector)
 
-    def contacts_top_block_link_region_click(self):
+    def click_to_change_region_in_contacts(self):
         """
         Кликает по смене региона в разделе "Контакты".
         """
-        self.contacts_top_block_link_region.click()
+        self.find_link_change_region_in_contacts_block.click()
 
     @property
-    def region_panel_list(self):
+    def find_region_panel_list(self):
         """
         Блок регионов в панели смены региона.
         """
@@ -73,17 +73,17 @@ class ContactsPage(BasePage):
         """
         Меняет регион на Камчатский край
         """
-        self.region_panel_list_wait()
-        self.find_element_in_block(self.region_panel_list, *change_region_selector).click()
+        self.wait_preload_overlay_change_region()
+        self.find_element_in_block(self.find_region_panel_list, *change_region_selector).click()
 
 
-    def region_panel_list_wait(self):
+    def wait_preload_overlay_change_region(self):
         """
         Ждет пока появится поле ввода при смене региона
         """
         self.find_element(contacts_top_block_link_region_click_wait)
 
-    def after_change_region_wait(self):
+    def wait_after_change_region(self):
         """
         Ждет пока загрузится список партнеров после смены региона
         """
@@ -93,26 +93,26 @@ class ContactsPage(BasePage):
         )
 
 
-    def contacts_click(self):
+    def click_contacts(self):
         """
         Переходит в раздел контакты
         """
         current_page = BasePage(self.browser)
         current_page.open_home_page()
         current_page = ContactsPage(current_page.browser)
-        current_page.button_contacts.click()
-        return current_page
+        current_page.find_button_contacts.click()
+        return ContactsPage(current_page.browser)
 
 
 
-    def tenzor_block_4_open(self):
+    def open_tenzor_block_4(self):
         """
         В разделе контакты кликает по логотипу tenzor
         :param browser:
         :return: возвращает объект страницы TenzorPage
         """
-        contacts_page = self.contacts_click()
-        return TenzorPage(contacts_page.logo_tenzor_click)
+        contacts_page = self.click_contacts()
+        return TenzorPage(contacts_page.click_logo_tenzor)
 
 
 

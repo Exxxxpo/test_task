@@ -1,4 +1,4 @@
-import config
+import settings
 
 from pages.contacts_page import ContactsPage
 from pages.tenzor_page import TenzorPage
@@ -15,7 +15,7 @@ def test_tenzor_block_4_is_displayed(browser):
     Проверка отображения блока "Сила в людях" на странице контактов
     """
     contacts_page = ContactsPage(browser)
-    tenzor_page = contacts_page.tenzor_block_4_open()
+    tenzor_page = contacts_page.open_tenzor_block_4()
     assert tenzor_page.tensor_block_4.is_displayed()
     assert tenzor_page.tensor_block_4_text.text == 'Сила в людях'
 
