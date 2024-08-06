@@ -1,7 +1,9 @@
+import pytest
 from pages.base_page import BasePage
 from pages.download_page import DownloadPage
 
 
+@pytest.mark.usefixtures("logger")
 def test_downloading_complete(browser):
     """
     Проверка загрузки СБИС плагина.
@@ -16,6 +18,7 @@ def test_downloading_complete(browser):
     assert download_page.check_downloading() == True
 
 
+@pytest.mark.usefixtures("logger")
 def test_size_downloaded_file(browser):
     """
     Проверка размера файла скачанного и указанного на сайте.
