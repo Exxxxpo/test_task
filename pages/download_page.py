@@ -73,9 +73,8 @@ class DownloadPage(BasePage):
 
 class DownloadPageSelectors:
     """
-    Селекторы используемые в DownloadPage
+    Селекторы используемые в DownloadPage.
     """
     footer_selector = (By.CSS_SELECTOR, '.sbisru-Footer__container')
     footer_download_link_selector = (By.LINK_TEXT, 'Скачать локальные версии')
     footer_download_selector = (By.PARTIAL_LINK_TEXT, 'Скачать (Exe')
-    test_selector = (By.LINK_TEXT, "Тарифы")
