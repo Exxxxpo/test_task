@@ -1,8 +1,6 @@
-import pytest
 from pages.contacts_page import ContactsPage
 
 
-@pytest.mark.usefixtures("logger")
 def test_contacts_region_correct(browser):
     """
     Регион автоматически опеределен верно.
@@ -10,7 +8,7 @@ def test_contacts_region_correct(browser):
     contacts_page = ContactsPage(browser).click_contacts()
     assert contacts_page.find_link_change_region_in_contacts_block.text == 'Свердловская обл.'
 
-@pytest.mark.usefixtures("logger")
+
 def test_contacts_list_partners_is_displayed(browser):
     """
     Проверка отображения списка партнеров.
@@ -20,7 +18,6 @@ def test_contacts_list_partners_is_displayed(browser):
     assert contacts_page.find_city_of_partners.text == "Екатеринбург"
 
 
-@pytest.mark.usefixtures("logger")
 def test_change_region(browser):
     """
     Проверка смены региона.
@@ -32,7 +29,6 @@ def test_change_region(browser):
     assert contacts_page.find_link_change_region_in_contacts_block.text == 'Камчатский край'
 
 
-@pytest.mark.usefixtures("logger")
 def test_partners_after_change_region(browser):
     """
     Проверка смены города в разделе "Партнеры".
@@ -42,7 +38,6 @@ def test_partners_after_change_region(browser):
     assert contacts_page.find_city_of_partners.text == "Петропавловск-Камчатский"
 
 
-@pytest.mark.usefixtures("logger")
 def test_url_after_change_region(browser):
     """
     URL корректно сменился после смены региона.
@@ -51,7 +46,6 @@ def test_url_after_change_region(browser):
     assert contacts_page.browser.current_url == 'https://sbis.ru/contacts/41-kamchatskij-kraj?tab=clients'
 
 
-@pytest.mark.usefixtures("logger")
 def test_title_after_change_region(browser):
     """
     Title корректно сменился после смены региона.

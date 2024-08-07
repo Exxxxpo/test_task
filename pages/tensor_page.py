@@ -36,6 +36,9 @@ class TensorPage(BasePage):
 
 
 class TensorPageSelectors:
+    """
+    Селекторы используемые в TenzorPage
+    """
     tensor_block_4_selector = (By.CSS_SELECTOR, "div.tensor_ru-Index__block4-content.tensor_ru-Index__card")
     tensor_block_4_selector_text = (By.CSS_SELECTOR, ".tensor_ru-Index__card-title.tensor_ru-pb-16")
     tensor_block_4_about_link_click_selector = (By.LINK_TEXT, "Подробнее")

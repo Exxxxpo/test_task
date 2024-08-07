@@ -84,7 +84,7 @@ class ContactsPage(BasePage):
 
     def click_contacts(self):
         """
-        Переходит в раздел контакты
+        С главной страницы sbis.ru переходит на страницу контактов.
         """
         current_page = BasePage(self.browser)
         current_page.open_home_page()
@@ -94,6 +94,9 @@ class ContactsPage(BasePage):
 
 
 class ContactsPageSelectors:
+    """
+    Селекторы используемые в ContactsPage
+    """
     button_selector = (By.LINK_TEXT, "Контакты")
     logo_tensor_selector = (By.CSS_SELECTOR, ".sbisru-Contacts__logo-tensor.mb-12")
     tensor_block_4_selector = (

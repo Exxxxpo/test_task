@@ -7,7 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.base_page import BasePage
-from settings import BASE_DIR
+from tests.conftest import BASE_DIR
+
 
 class DownloadPage(BasePage):
     def __init__(self, browser):
@@ -31,7 +32,6 @@ class DownloadPage(BasePage):
         """
         Кликает по "Скачать Веб-установщик".
         """
-
         wait = WebDriverWait(self.browser, 20)
         link = wait.until(EC.element_to_be_clickable(DownloadPageSelectors.footer_download_selector))
         link.click()
@@ -49,6 +49,7 @@ class DownloadPage(BasePage):
     def check_downloading(timeout=120):
         """
         Проверяет, что файл загружен.
+        В качестве времени ожидания загрузки используется кастомный таймер на ~120 сек.
         """
         directory = os.path.join(BASE_DIR, 'tests')
         seconds = 0
@@ -71,6 +72,9 @@ class DownloadPage(BasePage):
 
 
 class DownloadPageSelectors:
+    """
+    Селекторы используемые в DownloadPage
+    """
     footer_selector = (By.CSS_SELECTOR, '.sbisru-Footer__container')
     footer_download_link_selector = (By.LINK_TEXT, 'Скачать локальные версии')
     footer_download_selector = (By.PARTIAL_LINK_TEXT, 'Скачать (Exe')
