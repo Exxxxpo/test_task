@@ -26,7 +26,7 @@ class ContactsPage(BasePage):
     @property
     def find_contacts_top_block(self):
         """
-        Верхний блок в разделе контакты, содержащий смену региона
+        Верхний блок в разделе контакты, содержащий смену региона.
         """
         return self.find_element(ContactsPageSelectors.contacts_top_block_selector)
 
@@ -42,7 +42,7 @@ class ContactsPage(BasePage):
     @property
     def find_city_of_partners(self):
         """
-        Город парнеров в разделе контакты
+        Город парнеров в разделе контакты.
         """
         return self.find_element(ContactsPageSelectors.contacts_city_partners_selector)
 
@@ -61,20 +61,20 @@ class ContactsPage(BasePage):
 
     def change_region(self):
         """
-        Меняет регион на Камчатский край
+        Меняет регион на Камчатский край.
         """
         self.wait_preload_overlay_change_region()
         self.find_element_in_block(self.find_region_panel_list, *ContactsPageSelectors.change_region_selector).click()
 
     def wait_preload_overlay_change_region(self):
         """
-        Ждет пока появится поле ввода при смене региона
+        Ждет пока появится поле ввода при смене региона.
         """
         self.find_element(ContactsPageSelectors.contacts_top_block_link_region_click_wait)
 
     def wait_after_change_region(self):
         """
-        Ждет пока загрузится список партнеров после смены региона
+        Ждет пока загрузится список партнеров после смены региона.
         """
         wait = WebDriverWait(self.browser, 10)
         return wait.until(
@@ -95,7 +95,7 @@ class ContactsPage(BasePage):
 
 class ContactsPageSelectors:
     """
-    Селекторы используемые в ContactsPage
+    Селекторы используемые в ContactsPage.
     """
     button_selector = (By.LINK_TEXT, "Контакты")
     logo_tensor_selector = (By.CSS_SELECTOR, ".sbisru-Contacts__logo-tensor.mb-12")
