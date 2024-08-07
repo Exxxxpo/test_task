@@ -27,7 +27,7 @@ python -m venv .venv
 Активировать виртуальное окружение:
 
 ```
-source env/bin/activate
+source .venv/Scripts/activate
 ```
 
 Обновить pip:
