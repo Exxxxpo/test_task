@@ -33,7 +33,7 @@ source .venv/Scripts/activate
 Обновить pip:
 
 ```
-python3 -m pip install --upgrade pip
+python -m pip install --upgrade pip
 ```
 
 Установить зависимости из файла requirements.txt:
