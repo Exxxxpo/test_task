@@ -6,4 +6,3 @@ __pycache__/
 ./pages/__pycache__/
 ./tests/__pycache__/
 ./tests/.pytest_cache/
-.pytest.ini
